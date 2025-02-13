@@ -1,7 +1,6 @@
 import 'package:doctor/core/helpers/spacing.dart';
 import 'package:doctor/core/theme/app_styles.dart';
 import 'package:doctor/core/widgets/app_elevated_button.dart';
-import 'package:doctor/features/login/data/models/login_request_body.dart';
 import 'package:doctor/features/login/logic/cubit/login_cubit.dart';
 import 'package:doctor/features/login/views/widgets/dont_have_an_account_text.dart';
 import 'package:doctor/features/login/views/widgets/email_and_password_fields.dart';
@@ -68,12 +67,7 @@ class LoginView extends StatelessWidget {
 
   void validateThenLogin(BuildContext context) {
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginStates(
-            loginRequestBody: LoginRequestBody(
-              email: context.read<LoginCubit>().emailController.text,
-              password: context.read<LoginCubit>().passwordController.text,
-            ),
-          );
+      context.read<LoginCubit>().emitLoginStates();
     } else {
       context.read<LoginCubit>().autoValidate = AutovalidateMode.always;
     }

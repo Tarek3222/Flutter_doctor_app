@@ -12,10 +12,14 @@ class LoginCubit extends Cubit<LoginState> {
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidate = AutovalidateMode.disabled;
 
-  Future<void> emitLoginStates(
-      {required LoginRequestBody loginRequestBody}) async {
+  Future<void> emitLoginStates() async {
     emit(const LoginState.loading());
-    var response = await _loginRepo.login(loginRequestBody: loginRequestBody);
+    var response = await _loginRepo.login(
+      loginRequestBody: LoginRequestBody(
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
     response.fold(
       (failure) {
         emit(

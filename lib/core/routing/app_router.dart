@@ -4,6 +4,8 @@ import 'package:doctor/features/home/views/home_view.dart';
 import 'package:doctor/features/login/logic/cubit/login_cubit.dart';
 import 'package:doctor/features/login/views/login_view.dart';
 import 'package:doctor/features/on_boarding/views/on_boarding_view.dart';
+import 'package:doctor/features/sign_up/logic/cubit/signup_cubit.dart';
+import 'package:doctor/features/sign_up/views/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +25,13 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => getIt<LoginCubit>(),
             child: const LoginView(),
+          ),
+        );
+      case Routes.signUpScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<SignupCubit>(),
+            child: const SignUpView(),
           ),
         );
       default:
