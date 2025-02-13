@@ -54,9 +54,11 @@ dependencies:
   flutter_svg: ^2.0.17
   # A flutter plugin for adapting screen and font size.Guaranteed to look good on different models
   flutter_screenutil: ^5.9.3
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.15
   flutter_test:
     sdk: flutter
 
