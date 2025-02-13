@@ -1,9 +1,14 @@
 import 'package:doctor/core/helpers/spacing.dart';
 import 'package:doctor/core/theme/app_styles.dart';
-import 'package:doctor/features/login/views/widgets/already_have_account_text.dart';
-import 'package:doctor/features/login/views/widgets/forms_and_login_button.dart';
+import 'package:doctor/core/widgets/app_elevated_button.dart';
+import 'package:doctor/features/login/data/models/login_request_body.dart';
+import 'package:doctor/features/login/logic/cubit/login_cubit.dart';
+import 'package:doctor/features/login/views/widgets/dont_have_an_account_text.dart';
+import 'package:doctor/features/login/views/widgets/email_and_password_fields.dart';
+import 'package:doctor/features/login/views/widgets/login_bloc_listener.dart';
 import 'package:doctor/features/login/views/widgets/terms_and_conditions_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginView extends StatelessWidget {
@@ -29,19 +34,48 @@ class LoginView extends StatelessWidget {
                   style: AppStyles.font14GreyRegular,
                 ),
                 verticalSpace(36),
-                FormsAndLoginButton(),
-                verticalSpace(16),
-                TermsAndConditionsText(),
-                verticalSpace(60),
+                const EmailAndPasswordFields(),
+                verticalSpace(24),
                 Align(
-                  alignment: Alignment.center,
-                  child: AlreadyHaveAccountText(),
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: Text(
+                    'Forgot Password?',
+                    style: AppStyles.font13BlueRegular,
+                  ),
                 ),
+                verticalSpace(40),
+                AppElevatedButton(
+                  onPressed: () {
+                    validateThenLogin(context);
+                  },
+                  text: 'Login',
+                ),
+                verticalSpace(16),
+                const TermsAndConditionsText(),
+                verticalSpace(60),
+                const Align(
+                  alignment: Alignment.center,
+                  child: DontHaveAnAccountText(),
+                ),
+                const LoginBlocListener(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void validateThenLogin(BuildContext context) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLoginStates(
+            loginRequestBody: LoginRequestBody(
+              email: context.read<LoginCubit>().emailController.text,
+              password: context.read<LoginCubit>().passwordController.text,
+            ),
+          );
+    } else {
+      context.read<LoginCubit>().autoValidate = AutovalidateMode.always;
+    }
   }
 }

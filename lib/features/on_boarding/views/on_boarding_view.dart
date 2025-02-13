@@ -17,11 +17,11 @@ class OnBoardingView extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 30.h),
             child: Column(
               children: [
-                DocLogoAndName(),
+                const DocLogoAndName(),
                 SizedBox(
                   height: 30.h,
                 ),
-                DoctorImageAndText(),
+                const DoctorImageAndText(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: Column(
@@ -34,7 +34,7 @@ class OnBoardingView extends StatelessWidget {
                       SizedBox(
                         height: 30.h,
                       ),
-                      GetStartedButton(),
+                      const GetStartedButton(),
                     ],
                   ),
                 )
