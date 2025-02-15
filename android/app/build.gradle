@@ -29,6 +29,21 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
+    flavorDimensions += "default"
+    productFlavors {
+        // Define separate dev and prod product flavors.
+        create("production") {
+            // development utilizes minSDKVersion = 21 which is the default in Flutter
+            dimension = "default"
+             resValue "string", "app_name", "DocDoc Production"
+        }
+        create("development") {
+            // prod utilizes minSDKVersion = 18
+            dimension = "default"
+            applicationIdSuffix = ".dev"
+          resValue "string", "app_name", "DocDoc Development"
+        }
+    }
 
     buildTypes {
         release {
