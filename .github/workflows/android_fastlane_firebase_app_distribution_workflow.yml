@@ -31,12 +31,10 @@ jobs:
         ruby-version: "3.4.0"
         bundler-cache: true
         working-directory: android
-    
-    - name: Set up local gem path
-      run: echo "GEM_HOME=$HOME/.gem" >> $GITHUB_ENV
 
     - name: Install dependencies
-      run: bundle install --path vendor/bundle
+      run: bundle install
+   
     
      
     - name: Build and Distribute App for Firebase
