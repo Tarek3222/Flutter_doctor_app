@@ -24,22 +24,6 @@ jobs:
         flutter-version: '3.19.6'
         cache: true
 
-    - name: Cache Gradle Dependencies
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/*.kt', '**/*.kts') }}
-        restore-keys: |
-          gradle-${{ runner.os }}-
-
-    - name: Cache Ruby Bundler Dependencies
-      uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ruby-${{ runner.os }}-${{ hashFiles('android/Gemfile.lock') }}
-        restore-keys: ruby-${{ runner.os }}-
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
