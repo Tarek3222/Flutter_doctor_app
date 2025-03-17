@@ -4,8 +4,8 @@ platform :android do
   desc "Lane for Android firebase app distribution"
   lane :firebase_distribution do
     # sh "flutter clean"
-    # sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
-  
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+
     # Upload the APK to Firebase App Distribution
     firebase_app_distribution(
       app: "1:902539622121:android:d40e112102a9d09d23a278",
