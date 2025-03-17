@@ -33,7 +33,9 @@ jobs:
         working-directory: android
 
     - name: Install dependencies
-      run: bundle install
+      run: |
+        gem install bundler
+        bundle install
       working-directory: android
    
     
