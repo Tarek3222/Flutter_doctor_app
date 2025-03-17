@@ -28,17 +28,10 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: "3.4.0"
+        ruby-version: "3.3.6"
         bundler-cache: true
         working-directory: android
 
-    - name: Install dependencies
-      run: |
-        gem install bundler --user-install
-        bundle config set --local path 'vendor/bundle'
-        bundle install --verbose
-      working-directory: android
-   
      
     - name: Build and Distribute App for Firebase
       env:
