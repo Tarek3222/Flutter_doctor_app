@@ -39,10 +39,6 @@ jobs:
         bundle install --verbose
       working-directory: android
    
-
-    - name: Make Gradle Executable
-      run: chmod +x android/gradlew
-      working-directory: android
      
     - name: Build and Distribute App for Firebase
       env:
