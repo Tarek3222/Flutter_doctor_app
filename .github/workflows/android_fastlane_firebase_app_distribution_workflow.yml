@@ -39,11 +39,6 @@ jobs:
         bundle install --verbose
       working-directory: android
    
-    - name: Install Fastlane
-      run: |
-        bundle update fastlane
-        bundle exec fastlane --version
-      working-directory: android
 
     - name: Make Gradle Executable
       run: chmod +x android/gradlew
