@@ -43,7 +43,6 @@ android {
         create("development") {
             // prod utilizes minSDKVersion = 18
             dimension = "default"
-            applicationIdSuffix = ".dev"
           resValue "string", "app_name", "DocDoc Development"
         }
     }
