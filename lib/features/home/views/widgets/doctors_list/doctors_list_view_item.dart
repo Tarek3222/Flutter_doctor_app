@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doctor/core/helpers/spacing.dart';
+import 'package:doctor/core/theme/app_colors.dart';
 import 'package:doctor/core/theme/app_styles.dart';
 import 'package:doctor/features/home/data/models/specialization_response_model.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DoctorsListViewItem extends StatelessWidget {
   const DoctorsListViewItem({super.key, required this.doctorModel});
@@ -14,13 +17,35 @@ class DoctorsListViewItem extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 16.h),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+          CachedNetworkImage(
+            imageUrl:
+                "https://static.wikia.nocookie.net/five-world-war/images/6/64/Hisoka.jpg/revision/latest?cb=20190313114050",
+            progressIndicatorBuilder: (context, url, downloadProgress) {
+              return Shimmer.fromColors(
+                baseColor: AppColors.lightGrey,
+                highlightColor: Colors.white,
+                child: Container(
+                  width: 110.w,
+                  height: 120.h,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                  ),
+                ),
+              );
+            },
+            imageBuilder: (context, imageProvider) => Container(
               width: 110.w,
               height: 120.h,
-              fit: BoxFit.cover,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(12.0),
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
           horizontalSpace(16),
