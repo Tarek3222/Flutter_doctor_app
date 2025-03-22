@@ -5,6 +5,7 @@ sealed class HomeState {
   const HomeState();
 }
 
+// Specialization State
 class InitialState extends HomeState {
   const InitialState();
 }
@@ -19,6 +20,17 @@ class ErrorState extends HomeState {
 }
 
 class SuccessState extends HomeState {
-  final SpecializationResponseModel specializationResponseModel;
-  const SuccessState({required this.specializationResponseModel});
+  final List<SpecializationsData?>? specializationDataList;
+  const SuccessState({required this.specializationDataList});
+}
+
+// Doctors State
+class DoctorsSuccessState extends HomeState {
+  final List<Doctors?>? doctorsList;
+  const DoctorsSuccessState({required this.doctorsList});
+}
+
+class DoctorsErrorState extends HomeState {
+  final String errorMessage;
+  const DoctorsErrorState({required this.errorMessage});
 }
